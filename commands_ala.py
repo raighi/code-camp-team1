@@ -18,7 +18,7 @@ def modify(filename ,id , description) :
         if update : 
             with open(filename , 'w') as f : 
                 f.writelines(lines)
-            print(f" id numero  {id} est modifié avec succes.")
+            print(f" id numero  {id} est modifié avec succès.")
         else : 
             print(f"ERROR , id numero  {id} pas trouvé!!")
 
@@ -36,7 +36,7 @@ def rm (filename , id ) :
     if found :
         with open(filename , 'w' ) :
             f.writelines(lines)
-            print(f" ID numero  {id} a été supprimer avec succes ! .")
+            print(f" ID numero  {id} a été supprimé avec succès ! .")
 
 def show(filename) : 
     tasks=[]

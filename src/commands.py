@@ -1,4 +1,6 @@
 import core
+
+
 # Implementation of commands, using functions in the core module
 def add(details, filename, tasks):
     with open(filename, 'a') as f:

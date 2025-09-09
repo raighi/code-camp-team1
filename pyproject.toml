@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codecamp_team_1"
+version = "0.1.0"
+description = "A simple CLI file-based task manager."
+readme = "README.md"
+# Add yourself in the authors
+authors = [
+  { name = "Aloïs VINCENT", email = "alois.vincent@imt-atlantique.net" }
+]
+dependencies = [
+]
+
+[project.optional-dependencies]
+dev = [
+  "flake8>=7.0"
+]
+
+[tool.flake8]
+max-line-length = 108

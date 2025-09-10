@@ -34,6 +34,7 @@ def add(details, file, user):
 
 
 def modify(id, file, new_details, new_user):
+    print(new_user)
     try:
         tasks = get_tasks(file)
         task_found = False

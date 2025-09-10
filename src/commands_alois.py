@@ -6,7 +6,7 @@ def get_tasks(file):
     try:
         with open(file, 'r') as f:
             for line in f:
-                parts = line.strip().split("\t", 1)
+                parts = line.strip().split("\t")
                 if len(parts) == 2:
                     id, description = parts
                     tasks.append({'id': id, 'description': description})
@@ -87,16 +87,20 @@ def show(file):
 
         id_width = max(len(task['id']) for task in tasks)
         max_desc_len = max(len("description"), *(len(task['description']) for task in tasks))
+        max_user_len = max(len("user"), *(len(task.get('user', '')) for task in tasks))
 
-        header = f"| {'id':<{id_width}} | {'description':<{max_desc_len}} |"
-        divider = "+" + "-" * (id_width + 2) + "+" + "-" * (max_desc_len + 2) + "+"
+        header = f"| {'id':<{id_width}} | {'description':<{max_desc_len}} | {'user':<{max_user_len}} |"
+        divider = "+" + "-" * (id_width + 3) + "+" + "-" * (max_desc_len + 2) + "+" + "-" * (max_user_len + 2) + "+"
 
         print(divider)
         print(header)
         print(divider)
 
         for task in tasks:
-            print(f"| {task['id']:<{id_width}} | {task['description']:<{max_desc_len}} |")
+            if 'user' in task:
+                print(f"| {task['id']:<{id_width}}  | {task['description']:<{max_desc_len}} | {task['user']:<{max_user_len}} |")
+            else:
+                print(f"| {task['id']:<{id_width}}  | {task['description']:<{max_desc_len}} | {'-':<{max_user_len}} |")
 
         print(divider)
 

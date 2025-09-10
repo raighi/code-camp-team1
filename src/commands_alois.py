@@ -10,6 +10,9 @@ def get_tasks(file):
                 if len(parts) == 2:
                     id, description = parts
                     tasks.append({'id': id, 'description': description})
+                if len(parts) == 3:
+                    id,description,user = parts
+                    tasks.append({'id': id, 'description': description, 'user': user})
     except (FileNotFoundError, PermissionError) as e:
         raise e
     return tasks

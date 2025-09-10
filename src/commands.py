@@ -47,7 +47,7 @@ def modify(id, file, new_details, new_user):
                     f.write(entry)
                     task_found = True
                 else:
-                    f.write(f"{task['id']}\t{task['description']}\n")
+                    f.write(f"{task['id']}\t{task['description']}\t{task['user']}\n")
         if task_found:
             print(f"Successfully modified task {id}.")
         else:
@@ -98,7 +98,8 @@ def show(file):
 
         for task in tasks:
             if 'user' in task:
-                print(f"| {task['id']:<{id_width}}  | {task['description']:<{max_desc_len}} | {task['user']:<{max_user_len}} |")
+                print(f"| {task['id']:<{id_width}}  | {task['description']:<{max_desc_len}} | "
+                      f"{task['user']:<{max_user_len}} |")
             else:
                 print(f"| {task['id']:<{id_width}}  | {task['description']:<{max_desc_len}} | {'-':<{max_user_len}} |")
 

@@ -30,5 +30,5 @@ def create_parser():
  parser_show = subparsers.add_parser('show', help='Show the tasks')
  
 #Création du parseur pour les utilisateurs
- parser_user = subparsers.add_parser('--user','-u', help='Specify the user name', action='store_true')
+ parser_user = subparsers.add_parser('--user',help='Specify the user name')
  return parser

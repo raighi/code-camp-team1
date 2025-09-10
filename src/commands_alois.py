@@ -1,6 +1,3 @@
-import uuid
-
-
 def get_tasks(file):
     """
     Reads tasks from a file and returns a list of dictionnaries.
@@ -19,8 +16,7 @@ def get_tasks(file):
 
 
 def add(details, file):
-    # Create a short ID from a UUID
-    new_id = str(uuid.uuid4())[:8]
+    new_id = sum(1 for _ in open(file))
     entry = f"{new_id}\t{details}\n"
     with open(file, 'a') as f:
         f.write(entry)

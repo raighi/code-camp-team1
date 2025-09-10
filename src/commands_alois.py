@@ -6,7 +6,7 @@ def get_tasks(file):
     try:
         with open(file, 'r') as f:
             for line in f:
-                parts = line.strip().split("\t", 1)
+                parts = line.strip().split("\t")
                 if len(parts) == 2:
                     id, description = parts
                     tasks.append({'id': id, 'description': description})

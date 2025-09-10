@@ -16,9 +16,9 @@ def get_tasks(file):
 
 
 def add(details, file):
-    new_id = sum(1 for _ in open(file))
-    entry = f"{new_id}\t{details}\n"
     with open(file, 'a') as f:
+        new_id = sum(1 for _ in open(file))
+        entry = f"{new_id}\t{details}\n"
         f.write(entry)
     print(f"Succesfully added task {details} (ID: {new_id})")
 

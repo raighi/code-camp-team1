@@ -9,9 +9,9 @@ def main():
     try:
         # tasks = core.read_tasks(options.file)
         if options.command == 'add':
-            commands.add(details=' '.join(options.details), file=options.file)
+            commands.add(details=' '.join(options.details), user=' '.join(options.user), file=options.file)
         elif options.command == 'modify':
-            commands.modify(id=options.id, new_details=' '.join(options.details), file=options.file)
+            commands.modify(id=options.id, new_details=' '.join(options.details), new_user=' '.join(options.user), file=options.file)
         elif options.command == 'rm':
             commands.rm(id=options.id, file=options.file)
         elif options.command == 'show':

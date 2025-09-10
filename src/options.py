@@ -29,6 +29,7 @@ def create_parser():
 # Création du parseur pour la commandeshow
  parser_show = subparsers.add_parser('show', help='Show the tasks')
  
-#Création du parseur pour les utilisateurs
- parser_user = subparsers.add_parser('-u', action="store_true")
+#Création du parseur pour les utilisateurs parser_add.add_argument('--user', nargs='*', help='User associated with the task', default="unknown")
+ parser_modify.add_argument('--user', nargs='*', help='New user associated with the task', default=None)
+
  return parser

@@ -15,8 +15,9 @@ Each task has a unique ID and a description.
 | `rm`            | Remove a task by ID.                 | `python src/main.py tasks.txt rm "12345678"` |
 | `show`          | Display tasks in a formatted table.  | `python src/main.py tasks.txt show`      |
 
----
 
+---
+Adding a new task to a non-preexistent file will result to the creation of the said file. Any other command to a non-preexistent file will result to a "no such file or directory" error.
 ## File Format
 Tasks are stored as `<ID>\t<description>` per line.
 

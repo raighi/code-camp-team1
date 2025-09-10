@@ -14,14 +14,18 @@ def get_tasks(file):
                     id,description,user = parts
                     tasks.append({'id': id, 'description': description, 'user': user})
     except (FileNotFoundError, PermissionError) as e:
-        raise e
+        print("WARNING:", e)
+        pass  # So that the file can be created
     return tasks
 
 
 def add(details, file):
+    tasks = get_tasks(file)
+    new_id = 0
+    if tasks:
+        new_id = int(tasks[-1]['id'])+1
+    entry = f"{new_id}\t{details}\n"
     with open(file, 'a') as f:
-        new_id = sum(1 for _ in open(file))
-        entry = f"{new_id}\t{details}\n"
         f.write(entry)
     print(f"Succesfully added task {details} (ID: {new_id})")
 

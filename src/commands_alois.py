@@ -11,7 +11,7 @@ def get_tasks(file):
                     id, description = parts
                     tasks.append({'id': id, 'description': description})
                 if len(parts) == 3:
-                    id,description,user = parts
+                    id, description, user = parts
                     tasks.append({'id': id, 'description': description, 'user': user})
     except (FileNotFoundError, PermissionError) as e:
         print("WARNING:", e)
@@ -19,29 +19,35 @@ def get_tasks(file):
     return tasks
 
 
-def add(details, file):
+def add(details, file, user):
     tasks = get_tasks(file)
     new_id = 0
     if tasks:
         new_id = int(tasks[-1]['id'])+1
-    entry = f"{new_id}\t{details}\n"
+    if user:
+        entry = f"{new_id}\t{details}\t{user}\n"
+    else:
+        entry = f"{new_id}\t{details}\n"
     with open(file, 'a') as f:
         f.write(entry)
     print(f"Succesfully added task {details} (ID: {new_id})")
 
 
-def modify(id, file, new_details):
+def modify(id, file, new_details, new_user):
     try:
         tasks = get_tasks(file)
         task_found = False
         with open(file, 'w') as f:
             for task in tasks:
                 if task['id'] == id:
-                    f.write(f"{id}\t{new_details}\n")
+                    if new_user:
+                        entry = f"{id}\t{new_details}\t{new_user}\n"
+                    else:
+                        entry = f"{id}\t{new_details}\n"
+                    f.write(entry)
                     task_found = True
                 else:
                     f.write(f"{task['id']}\t{task['description']}\n")
-
         if task_found:
             print(f"Successfully modified task {id}.")
         else:
@@ -61,7 +67,6 @@ def rm(id, file):
                     task_found = True
                 else:
                     f.write(f"{task['id']}\t{task['description']}\n")
-
         if task_found:
             print(f"Successfully removed task {id}.")
         else:

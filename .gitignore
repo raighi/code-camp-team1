@@ -1,3 +1,4 @@
 build
 *.pdf
 *.txt
+__pycache__

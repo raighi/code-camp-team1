@@ -10,10 +10,10 @@ Each task has a unique ID and a description.
 
 | Command         | Description                          | Usage Example                     |
 |-----------------|--------------------------------------|-----------------------------------|
-| `add`           | Add a new task.                      | `main.py tasks.txt add "Buy milk"` |
-| `modify`        | Update a task by ID.                 | `main.py tasks.txt modify "12345678" "Buy bread"` |
-| `rm`            | Remove a task by ID.                 | `main.py tasks.txt rm "12345678"` |
-| `show`          | Display tasks in a formatted table.  | `main.py tasks.txt show`      |
+| `add`           | Add a new task.                      | `python src/main.py tasks.txt add "Buy milk"` |
+| `modify`        | Update a task by ID.                 | `python src/main.py tasks.txt modify "12345678" "Buy bread"` |
+| `rm`            | Remove a task by ID.                 | `python src/main.py tasks.txt rm "12345678"` |
+| `show`          | Display tasks in a formatted table.  | `python src/main.py tasks.txt show`      |
 
 ---
 

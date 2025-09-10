@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import commands_alois as commands
+import commands
 # import core
 from options import create_parser
 

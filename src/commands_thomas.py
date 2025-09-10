@@ -10,6 +10,7 @@ def add(details, filename, tasks):
         task = details
         f.write(str(new_id)+' '+task+'\n')
     print(f"Succesfully added task {new_id} ({task})")
+    return new_id
 
 def modify(id, details, filename, tasks):
     new_tasks = []

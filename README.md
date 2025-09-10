@@ -27,7 +27,7 @@ Each task has a unique ID and a description.
 ## Arguments
 | Argument | Required for | Type | Description | Example |
 |----------|--------------|------|-------------|---------|
-| `-u`, `--user` | `add`, `modify` | literal | Specifies which user the task belongs to. | `-u AloisHasNeuros` | 
+| `-u`, `--user` | `add`, `modify` | literal | Specifies which user the task belongs to. | `-u AloisHasNeurons` | 
 
 ---
 Adding a new task to a non-preexistent file will result to the creation of the said file. Any other command to a non-preexistent file will result to a "no such file or directory" error.

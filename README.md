@@ -14,7 +14,7 @@ Each task has a unique ID and a description.
 | `modify`        | Update a task by ID.                 | `python src/main.py tasks.txt modify "12345678" "Buy bread"` |
 | `rm`            | Remove a task by ID.                 | `python src/main.py tasks.txt rm "12345678"` |
 | `show`          | Display tasks in a formatted table.  | `python src/main.py tasks.txt show`      |
-| `end`           | End a task and specify the duration  | `python src/main.py tasks.txt end "12345678" -r 90`|
+| `end`           | End a task and specify the duration  | `python src/main.py tasks.txt end "12345678" "90"`|
 
 ## Positional arguments
 

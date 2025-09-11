@@ -21,8 +21,8 @@ Each task has a unique ID and a description.
 | Argument | Required for | Type | Description | Example |
 |----------|--------------|------|-------------|---------|
 | `file`   | all commands | path | Path to the tasks file. Created on `add` if missing. | `tasks.txt` |
-| `command` | all commands | literal | One of `add`, `modify`, `rm`, `show`. | `add` |
-| `id` | `modify`, `rm` | 8-char hex | Task identifier printed by `add` or shown by `show`. | `1a2b3c4d` |
+| `command` | all commands | literal | One of `add`, `modify`, `rm`, `show`, `end`. | `add` |
+| `id` | `modify`, `rm` | int | Task identifier printed by `add` or shown by `show`. | `0` |
 | `details` | `add`, `modify` | string (rest of line) | Task description. For `modify`, replaces the description for `id`. Quote if it contains spaces. | "Buy milk" |
 
 

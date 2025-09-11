@@ -20,10 +20,9 @@ def create_parser():
  # Création du parseur pour la commandemodify
  parser_modify = subparsers.add_parser('modify',help='Modify a task given its id. The rest of the command line is used for the task details, the default being "no details"')
  parser_modify.add_argument('id', help="the task id")
- parser_modify.add_argument('details', nargs='*', default="no details",
- help="the new details")
- parser_modify.add_argument('-u', '--user', nargs='*', help='New user associated with the task', default=None)
- parser_modify.add_argument('-t', '--estimatedtime', type=int, help='Set a new estimated time in seconds for performing the task', default=None)
+ parser_modify.add_argument('details', nargs='*', default="no details", help="the new details") 
+ parser_modify.add_argument('-u', '--user', nargs='*', required=False, type=str, help='New user associated with the task', default=None)
+ parser_modify.add_argument('-t', '--estimatedtime', required=False, type=int, help='Set a new estimated time for performing the task', default=None)
 
 
  # Création du parseur pour la commanderm

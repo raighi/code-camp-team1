@@ -23,6 +23,7 @@ Each task has a unique ID and a description.
 | `command` | all commands | literal | One of `add`, `modify`, `rm`, `show`. | `add` |
 | `id` | `modify`, `rm` | 8-char hex | Task identifier printed by `add` or shown by `show`. | `1a2b3c4d` |
 | `details` | `add`, `modify` | string (rest of line) | Task description. For `modify`, replaces the description for `id`. Quote if it contains spaces. | "Buy milk" |
+| `end`           | End a task and specify the duration  | `python src/main.py tasks.txt end "12345678" -r 90`|
 
 ## Arguments
 | Argument | Required for | Type | Description | Example |

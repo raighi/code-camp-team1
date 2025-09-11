@@ -17,6 +17,8 @@ def main():
             commands.rm(id=options.id, file=options.file)
         elif options.command == 'show':
             commands.show(file=options.file)
+        elif options.command == 'end':
+            commands.endTask(file=options.file, id=options.id, end_time=' '.join(options.realisedTime))
     except Exception as e:
         print(f"An error occurred: {e}")
 

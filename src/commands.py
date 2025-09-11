@@ -204,6 +204,9 @@ def endTask(file, id, end_time):
         with open(file, 'w') as f:
             for task in tasks:
                 if task['id'] == id:
+                    if task['end_time']:
+                        print(f"ERROR: task {id} already has an end time.")
+                        return
                     # Task being ended - add end_time
                     if 'user' in task and task['user']:
                         # Has user: id\tdescription\tuser\test_time\tend_time

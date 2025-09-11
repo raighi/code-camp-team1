@@ -22,7 +22,7 @@ def create_parser():
  parser_modify.add_argument('id', help="the task id")
  parser_modify.add_argument('details', nargs='*', default="no details",
  help="the new details")
- parser_modify.add_argument('-u', '--user', nargs='*', help='New user associated with the task', default=None)
+ parser_modify.add_argument('-u', '--user', nargs='*', help='New user associated with the task', default=None, required = False)
 
  # Création du parseur pour la commanderm
  parser_rm = subparsers.add_parser('rm', help='Remove an task given its id')

@@ -8,12 +8,13 @@ Each task has a unique ID and a description.
 
 ## Commands
 
-| Command         | Description                          | Usage Example                     |
-|-----------------|--------------------------------------|-----------------------------------|
-| `add`           | Add a new task.                      | `python src/main.py tasks.txt add "Buy milk"` |
+| Command         | Description                          | Usage Example                                                |
+|-----------------|--------------------------------------|--------------------------------------------------------------|
+| `add`           | Add a new task.                      | `python src/main.py tasks.txt add "Buy milk"`                |
 | `modify`        | Update a task by ID.                 | `python src/main.py tasks.txt modify "12345678" "Buy bread"` |
-| `rm`            | Remove a task by ID.                 | `python src/main.py tasks.txt rm "12345678"` |
-| `show`          | Display tasks in a formatted table.  | `python src/main.py tasks.txt show`      |
+| `rm`            | Remove a task by ID.                 | `python src/main.py tasks.txt rm "12345678"`                 |
+| `show`          | Display tasks in a formatted table.  | `python src/main.py tasks.txt show`                          |
+
 
 ## Positional arguments
 
@@ -25,9 +26,9 @@ Each task has a unique ID and a description.
 | `details` | `add`, `modify` | string (rest of line) | Task description. For `modify`, replaces the description for `id`. Quote if it contains spaces. | "Buy milk" |
 
 ## Arguments
-| Argument | Required for | Type | Description | Example |
+| Argument | Optional for | Type | Description | Example |
 |----------|--------------|------|-------------|---------|
-| `-u`, `--user` | `add`, `modify` | literal | Specifies which user the task belongs to. | `-u AloisHasNeurons` | 
+| `-u`, `--user` | `add`, `modify` | literal | Specifies which user the task belongs to. (if no new description is informed calling modify it keeps the old one) | `python src/main.py tasks.txt modify 0 -u AloisHasNeurons` | 
 
 ---
 Adding a new task to a non-preexistent file will result to the creation of the said file. Any other command to a non-preexistent file will result to a "no such file or directory" error.

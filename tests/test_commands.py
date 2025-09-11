@@ -8,7 +8,7 @@ import uuid
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.insert(0, parent_dir)
-import src.commands_alois as commands  # noqa: E402 (Flake8 lint error)
+import src.commands as commands  # noqa: E402 (Flake8 lint error)
 
 
 class TestCommands(unittest.TestCase):
@@ -40,6 +40,36 @@ class TestCommands(unittest.TestCase):
         self.assertEqual(len(tasks), 2)
         self.assertEqual(tasks[0]['id'], '12345678')
         self.assertEqual(tasks[0]['description'], 'Test task 1')
+
+    def test_add_task_with_user(self):
+        commands.add("Test task", self.temp_filename, user="Alois")
+        with open(self.temp_filename, 'r') as f:
+            content = f.read()
+        self.assertIn("Alois", content)
+        tasks = commands.get_tasks(self.temp_filename)
+        self.assertEqual(tasks[0]['user'], "Alois")
+
+    def test_add_task_without_user(self):
+        commands.add("Test task", self.temp_filename, user=None)
+        tasks = commands.get_tasks(self.temp_filename)
+        self.assertNotIn('user', tasks[0])
+
+    def test_modify_task_user(self):
+        # Ajout initial avec user
+        commands.add("Test task", self.temp_filename, user="Alois")
+        # Modification du user
+        commands.modify("0", self.temp_filename, "Test task modifié", new_user="Bruno")
+        tasks = commands.get_tasks(self.temp_filename)
+        self.assertEqual(tasks[0]['user'], "Bruno")
+
+    def test_modify_task_user_none(self):
+        # Ajout initial avec user
+        commands.add("Test task", self.temp_filename, user="Alois")
+        # Modification sans user
+        commands.modify("0", self.temp_filename, "Test task modifié", new_user=None)
+        tasks = commands.get_tasks(self.temp_filename)
+        self.assertEqual(tasks[0]['description'], "Test task modifié")
+        self.assertEqual(tasks[0]['user'], "Alois")
 
     @patch('uuid.uuid4')
     def test_add_task(self, mock_uuid):

@@ -45,6 +45,8 @@ def modify(id, file, new_details, new_user):
                         print(new_details)
                     elif new_user:
                         entry = f"{id}\t{new_details}\t{new_user}\n"
+                    elif 'user' in task:
+                        entry = f"{id}\t{new_details}\t{task['user']}\n"
                     else:
                         entry = f"{id}\t{new_details}\n"
                     f.write(entry)

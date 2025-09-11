@@ -69,7 +69,8 @@ def add(details, file, user):
     print(f"Successfully added task {details} (ID: {new_id})")
 
 
-def modify(id, file, new_details, new_user, new_est_time):
+def modify(id, file, new_details, new_user):
+    print(new_details)
     try:
         tasks = get_tasks(file)
         task_found = False
@@ -80,16 +81,12 @@ def modify(id, file, new_details, new_user, new_est_time):
                 if new_details != "no details":
                     task['description'] = new_details
 
-                if new_user is not None:
+                if new_user != "unknown":
                     if new_user:
                         task['user'] = new_user
                     else:
                         # Remove user field if empty string is passed
                         task.pop('user', None)
-
-                if new_est_time is not None:
-                    task['est_time'] = str(new_est_time)
-
                 task_found = True
                 break
 

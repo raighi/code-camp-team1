@@ -1,7 +1,7 @@
 # code-camp-team1
 
 ## Overview
-A simple command-line tool to manage tasks stored in a text file.
+A simple command-line tool to manage tasks stored in a JSON file.
 Each task has a unique ID and a description.
 
 ---
@@ -10,17 +10,17 @@ Each task has a unique ID and a description.
 
 | Command         | Description                          | Usage Example                                                |
 |-----------------|--------------------------------------|--------------------------------------------------------------|
-| `add`           | Add a new task.                      | `python src/main.py tasks.txt add "Buy milk"`                |
-| `modify`        | Update a task by ID.                 | `python src/main.py tasks.txt modify "12345678" "Buy bread"` |
-| `rm`            | Remove a task by ID.                 | `python src/main.py tasks.txt rm "12345678"` |
-| `show`          | Display tasks in a formatted table.  | `python src/main.py tasks.txt show`      |
-| `end`           | End a task and specify the duration  | `python src/main.py tasks.txt end "12345678" "90"`|
+| `add`           | Add a new task.                      | `python src/main.py tasks.json add "Buy milk"`                |
+| `modify`        | Update a task by ID.                 | `python src/main.py tasks.json modify "12345678" "Buy bread"` |
+| `rm`            | Remove a task by ID.                 | `python src/main.py tasks.json rm "12345678"` |
+| `show`          | Display tasks in a formatted table.  | `python src/main.py tasks.json show`      |
+| `end`           | End a task and specify the duration  | `python src/main.py tasks.json end "12345678" "90"`|
 
 ## Positional arguments
 
 | Argument | Required for | Type | Description | Example |
 |----------|--------------|------|-------------|---------|
-| `file`   | all commands | path | Path to the tasks file. Created on `add` if missing. | `tasks.txt` |
+| `file`   | all commands | path | Path to the tasks file. Created on `add` if missing. | `tasks.json` |
 | `command` | all commands | literal | One of `add`, `modify`, `rm`, `show`, `end`. | `add` |
 | `id` | `modify`, `rm` | int | Task identifier printed by `add` or shown by `show`. | `0` |
 | `details` | `add`, `modify` | string (rest of line) | Task description. For `modify`, replaces the description for `id`. Quote if it contains spaces. | "Buy milk" |
@@ -29,7 +29,7 @@ Each task has a unique ID and a description.
 ## Arguments
 | Argument | Optional for | Type | Description | Example |
 |----------|--------------|------|-------------|---------|
-| `-u`, `--user` | `add`, `modify` | literal | Specifies which user the task belongs to. (if no new description is informed calling modify it keeps the old one) | `python src/main.py tasks.txt modify 0 -u AloisHasNeurons` | 
+| `-u`, `--user` | `add`, `modify` | literal | Specifies which user the task belongs to. (if no new description is informed calling modify it keeps the old one) | `python src/main.py tasks.json modify 0 -u AloisHasNeurons` |
 
 ---
 ## Other infos

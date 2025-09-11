@@ -95,20 +95,34 @@ def modify(id, file, new_details, new_user):
                     details_to_use = task['description'] if new_details == "no details" else new_details
                     user_to_use = task.get('user') if new_user == "unknown" else new_user
 
-                    # Write entry based on whether user exists
-                    if user_to_use:
-                        entry = f"{id}\t{details_to_use}\t{user_to_use}\n"
+                    # Preserve end_time if it exists
+                    if 'end_time' in task:
+                        # Task has end_time
+                        if user_to_use:
+                            entry = f"{id}\t{details_to_use}\t{user_to_use}\t{task['est_time']}\t{task['end_time']}\n"
+                        else:
+                            entry = f"{id}\t{details_to_use}\t\t{task['est_time']}\t{task['end_time']}\n"
                     else:
-                        entry = f"{id}\t{details_to_use}\n"
+                        # Task doesn't have end_time
+                        if user_to_use:
+                            entry = f"{id}\t{details_to_use}\t{user_to_use}\t{task['est_time']}\n"
+                        else:
+                            entry = f"{id}\t{details_to_use}\t{task['est_time']}\n"
 
                     f.write(entry)
                     task_found = True
                 else:
-                    # Preserve original task format
-                    if 'user' in task:
-                        f.write(f"{task['id']}\t{task['description']}\t{task['user']}\n")
+                    # Preserve other tasks in their original format
+                    if 'end_time' in task:
+                        if 'user' in task and task['user']:
+                            f.write(f"{task['id']}\t{task['description']}\t{task['user']}\t{task['est_time']}\t{task['end_time']}\n")
+                        else:
+                            f.write(f"{task['id']}\t{task['description']}\t\t{task['est_time']}\t{task['end_time']}\n")
                     else:
-                        f.write(f"{task['id']}\t{task['description']}\n")
+                        if 'user' in task and task['user']:
+                            f.write(f"{task['id']}\t{task['description']}\t{task['user']}\t{task['est_time']}\n")
+                        else:
+                            f.write(f"{task['id']}\t{task['description']}\t{task['est_time']}\n")
 
         if task_found:
             print(f"Successfully modified task {id}.")

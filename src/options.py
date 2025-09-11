@@ -15,7 +15,7 @@ def create_parser():
  parser_add = subparsers.add_parser('add', help='Add a new task. The rest of the command line is used for the task details, the default being "no details".')
  parser_add.add_argument('details', nargs='*', default="no details",
  help="task details")
- parser_add.add_argument('-u', '--user', nargs='*', help='User associated with the task', default="unknown")
+ parser_add.add_argument('-u', '--user', nargs='*', required=False, help='User associated with the task', default="unknown")
 
  # Création du parseur pour la commandemodify
  parser_modify = subparsers.add_parser('modify',help='Modify a task given its id. The rest of the command line is used for the task details, the default being "no details"')

@@ -11,12 +11,14 @@ def main():
         if options.command == 'add':
             commands.add(details=' '.join(options.details), user=' '.join(options.user), file=options.file)
         elif options.command == 'modify':
-            commands.modify(id=options.id, new_details=' '.join(options.details), new_user=' '.join(options.user) if options.user is not None else None,
+            commands.modify(id=options.id, new_details=' '.join(options.details), new_user=' '.join(options.user) if options.user is not None else "unknown",
                             file=options.file)
         elif options.command == 'rm':
             commands.rm(id=options.id, file=options.file)
         elif options.command == 'show':
             commands.show(file=options.file)
+        elif options.command == 'end':
+            commands.endTask(file=options.file, id=options.id, end_time=' '.join(options.realisedTime))
     except Exception as e:
         print(f"An error occurred: {e}")
 

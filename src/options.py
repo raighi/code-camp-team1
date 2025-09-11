@@ -23,6 +23,8 @@ def create_parser():
  parser_modify.add_argument('details', nargs='*', default="no details",
  help="the new details")
  parser_modify.add_argument('-u', '--user', nargs='*', help='New user associated with the task', default=None)
+  parser_modify.add_argument('-t', '--estimatedtime', type=int, help='Set a new estimated time in seconds for performing the task', default=None)
+
 
  # Création du parseur pour la commanderm
  parser_rm = subparsers.add_parser('rm', help='Remove an task given its id')
@@ -34,6 +36,6 @@ def create_parser():
   #Création du parseur pour la commandeend
  parser_end = subparsers.add_parser('end', help='Mark a task as ended')
  parser_end.add_argument('id', help="The task id")
- parser_end.add_argument('-r','--realisedtime', required=True, help='Enter the actual time for performing the task')
+ parser_end.add_argument('-r','--realisedtime', required=True, help='Enter the actual time in seconds for performing the task')
 
  return parser

@@ -32,6 +32,10 @@ Each task has a unique ID and a description.
 | `-u`, `--user` | `add`, `modify` | literal | Specifies which user the task belongs to. | `-u AloisHasNeurons` | 
 
 ---
+## Other infos
+
+When adding a task, an estimatation of the duration is asked. When an user want to end a task he has to notify how many seconds he needed to complete the task in his command.
+
 Adding a new task to a non-preexistent file will result to the creation of the said file. Any other command to a non-preexistent file will result to a "no such file or directory" error.
 ## File Format
 Tasks are stored as `<ID>\t<description>` per line.

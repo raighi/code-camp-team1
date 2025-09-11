@@ -30,6 +30,10 @@ def create_parser():
  
  # Création du parseur pour la commandeshow
  parser_show = subparsers.add_parser('show', help='Show the tasks')
- 
+
+  #Création du parseur pour la commandeend
+ parser_end = subparsers.add_parser('end', help='Mark a task as ended')
+ parser_end.add_argument('id', help="The task id")
+ parser_end.add_argument('-r','--realisedtime', required=True, help='Enter the actual time for performing the task')
 
  return parser

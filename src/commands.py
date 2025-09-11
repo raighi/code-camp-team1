@@ -195,7 +195,7 @@ def show(file):
                 print(f"| {task['id']:<{id_width}}  | {task['description']:<{max_desc_len}} | "
                       f"{task['user']:<{max_user_len}} | {task['est_time']:<{max_est_time_len}} | {end_time_display:<{max_end_time_len}} |")
             else:
-                print(f"| {task['id']:<{id_width}} | {task['description']:<{max_desc_len}} | {'-':<{max_user_len}} | "
+                print(f"| {task['id']:<{id_width}}  | {task['description']:<{max_desc_len}} | {'-':<{max_user_len}} | "
                       f"{task['est_time']:<{max_est_time_len}} | {end_time_display:<{max_end_time_len}} |")
 
         print(divider)

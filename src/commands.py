@@ -34,14 +34,16 @@ def add(details, file, user):
 
 
 def modify(id, file, new_details, new_user):
-    print(new_user)
     try:
         tasks = get_tasks(file)
         task_found = False
         with open(file, 'w') as f:
             for task in tasks:
                 if task['id'] == id:
-                    if new_user:
+                    if new_user and new_details=="n o   d e t a i l s":
+                        entry = f"{id}\t{task['description']}\t{new_user}\n"
+                        print(new_details)
+                    elif new_user:
                         entry = f"{id}\t{new_details}\t{new_user}\n"
                     else:
                         entry = f"{id}\t{new_details}\n"

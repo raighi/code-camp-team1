@@ -9,7 +9,8 @@ def main():
         if options.command == 'add':
             commands.add(details=' '.join(options.details), user=' '.join(options.user), file=options.file)
         elif options.command == 'modify':
-            commands.modify(id=options.id, new_details=' '.join(options.details), new_user=' '.join(options.new_user) if options.new_user is not None else "unknown",
+            commands.modify(id=options.id, new_details=' '.join(options.details),
+                            new_user=' '.join(options.new_user) if options.new_user is not None else "unknown",
                             file=options.file)
         elif options.command == 'rm':
             commands.rm(id=options.id, file=options.file)

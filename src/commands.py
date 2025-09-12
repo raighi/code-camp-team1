@@ -141,8 +141,10 @@ def show(file):
         max_end_time_len = max(len("end time"), max(len(str(task.get('end_time', ''))) for task in tasks))
 
         # Create table header
-        header = f"| {'id':<{id_width}} | {'description':<{max_desc_len}} | {'user':<{max_user_len}} | {'est. time':<{max_est_time_len}} | {'end time':<{max_end_time_len}} |"
-        divider = "+" + "-" * (id_width + 2) + "+" + "-" * (max_desc_len + 2) + "+" + "-" * (max_user_len + 2) + "+" + "-" * (max_est_time_len + 2) + "+" + "-" * (max_end_time_len + 2) + "+"
+        header = f"| {'id':<{id_width}} | {'description':<{max_desc_len}} | {'user':<{max_user_len}} |"
+        f"{'est. time':<{max_est_time_len}} | {'end time':<{max_end_time_len}} |"
+        divider = ("+" + "-" * (id_width + 2) + "+" + "-" * (max_desc_len + 2) + "+" + "-" *
+                   (max_user_len + 2) + "+" + "-" * (max_est_time_len + 2) + "+" + "-" * (max_end_time_len + 2) + "+")
 
         print(divider)
         print(header)
@@ -154,7 +156,8 @@ def show(file):
             end_time_display = task.get('end_time', '-')
 
             print(f"| {task['id']:<{id_width}} | {task['description']:<{max_desc_len}} | "
-                  f"{user_display:<{max_user_len}} | {task['est_time']:<{max_est_time_len}} | {end_time_display:<{max_end_time_len}} |")
+                  f"{user_display:<{max_user_len}} | {task['est_time']:<{max_est_time_len}} | "
+                  f"{end_time_display:<{max_end_time_len}} |")
 
         print(divider)
 

@@ -2,7 +2,7 @@
 
 ## Overview
 A simple command-line tool to manage tasks stored in a JSON file.
-Each task has a unique ID and a description.
+Each task has a unique ID, a description and an estimated time for completion, it can be associated with a user.
 
 ---
 

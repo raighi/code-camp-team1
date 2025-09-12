@@ -36,6 +36,32 @@ def save_tasks(file, tasks):
 
 
 def add(details, file, user):
+    """
+    Adds a new task to the task file.
+
+    This function interacts with the user to collect the estimated time for the task
+    and appends the new task to the existing list of tasks in the specified file.
+    If the file does not exist, the user is prompted to create a new task file.
+
+    The new task is assigned a unique ID based on the current maximum ID in the file.
+    The task will include the description, estimated time, and optionally a user.
+
+    Args:
+        details (str): Description of the new task.
+        file (str): Path to the tasks file.
+        user (str): User assigned to the task. If falsy (e.g., None or empty string),
+                    no user is assigned to the task.
+
+    Raises:
+        PermissionError: If there's an issue with file permissions while saving the tasks.
+        IOError: If there's an I/O error while saving the tasks.
+
+    Note:
+        This function interacts with the user through the console for input regarding
+        the estimated time of the task and whether to create a new file if the specified
+        file does not exist. If the file exists but is not valid, an error is printed
+        and the task is not added.
+    """
     # Check if file exists
     if not os.path.isfile(file):
         print(f"ERROR: File '{file}' not found.")
@@ -235,7 +261,6 @@ def show(file):
             return
 
         # Sort tasks by ID
-        print(tasks)
         tasks.sort(key=lambda x: int(x['id']))
 
         # Calculate column widths

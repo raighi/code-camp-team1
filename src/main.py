@@ -11,7 +11,7 @@ def main():
         if options.command == 'add': # Cas de la commande add
             commands.add(details=' '.join(options.details), user=' '.join(options.user), file=options.file) #Appel de la fonction add et attibution des paramètres récupérés par le parser
         if options.command == 'create': #Cas de la commande create
-            commands.create(new_file=options.new_file) #Appel de la fonction create et attibution des paramètres récupérés par le parser
+            commands.create(new_file=options.new_file, details=' '.join(options.details), user=' '.join(options.user)) #Appel de la fonction create et attibution des paramètres récupérés par le parser
         elif options.command == 'modify': #Cas de la commande modify
             commands.modify(id=options.id, new_details=' '.join(options.details), new_user=' '.join(options.user) if options.user is not None else "unknown",
                             file=options.file) #Appel de la fonction modify et attibution des paramètres récupérés par le parser, avec un cas pour résoudre des erreurs liées à l'argument optionnel user (Auteur Thomas)

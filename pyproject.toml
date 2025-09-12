@@ -7,9 +7,13 @@ name = "codecamp_team_1"
 version = "0.1.0"
 description = "A simple CLI file-based task manager."
 readme = "README.md"
-# Add yourself in the authors
 authors = [
-  { name = "Aloïs VINCENT", email = "alois.vincent@imt-atlantique.net" }
+  { name = "Aloïs VINCENT", email = "alois.vincent@imt-atlantique.net" },
+  { name = "Raphaël HIERSO", email = "raphael.hierso-iglesias@imt-atlantique.net"},
+  { name = "Heitor SARDINHA GONÇALVES PAIVA", email = "heitor.sardinha-goncalves-paiva@imt-atlantique.net"},
+  { name = "Thomas BRUYERE", email = "thomas.bruyere@imt-atlantique.net"},
+  { name = "Ala ABDESSAYED", email = "alaabdessaied@gmail.com"},
+  { name = "Mingyang WANG", email = "mingyang.wang@imt-atlantique.net"}
 ]
 dependencies = [
 ]

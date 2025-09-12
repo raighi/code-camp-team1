@@ -15,6 +15,7 @@ Each task has a unique ID and a description.
 | `rm`            | Remove a task by ID.                 | `python src/main.py tasks.json rm "12345678"` |
 | `show`          | Display tasks in a formatted table.  | `python src/main.py tasks.json show`      |
 | `end`           | End a task and specify the duration  | `python src/main.py tasks.json end "12345678" "90"`|
+| `create`           | Create a task and specify the first task and its duration  | `python src/main.py tasks.json create "Buy milk"`|
 
 ## Positional arguments
 

@@ -4,17 +4,17 @@ import argparse
 def create_parser():
 
     # Création du parseur de ligne de commande
-    parser = argparse.ArgumentParser(prog='Task_manager', usage='%(prog)s [options]',
+    parser = argparse.ArgumentParser(prog='Task_manager', 
                                      description='A simple task manager')
     # Ajout d’un argumentpositionnel (le fichier contenant les tâches)
     parser.add_argument('file', help='The tasks file')
 
     # Ajout d’un sous-parseur pour les sous-commandes
-    subparsers = parser.add_subparsers(usage='%(prog)s [options]', help='The commands to manage orders',
+    subparsers = parser.add_subparsers(help='The commands to manage orders',
                                        dest='command', required=True)
 
     # Création du parseur pour la commandeadd
-    parser_add = subparsers.add_parser('add', usage='%(prog)s add [options]', help='Add a new task. '
+    parser_add = subparsers.add_parser('add', help='Add a new task. '
                                        'The rest of the command line is used for the task details, '
                                        'the default being "no details".')
     parser_add.add_argument('details', nargs='*', default=["no details"],

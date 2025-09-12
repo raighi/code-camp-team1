@@ -220,24 +220,40 @@ def check_json_file_integrity(file_path):
         bool: Indicates if the check passed.
     """
     if not os.path.isfile(file_path):
+        print(f"ERROR: File not found at '{file_path}'")
         return False
 
     try:
         with open(file_path, 'r') as file:
             data = json.load(file)
-    except Warning as w:
-        print(f"WARNING: {w}")
-    except Exception as e:
-        print(f"ERROR: {e}")
+    except json.JSONDecodeError:
+        print(f"ERROR: The file '{file_path}' is not a valid JSON file.")
+        return False
+    except IOError as e:
+        print(f"ERROR: An I/O error occurred while reading the file: {e}")
         return False
 
-    # Check if the JSON is an object (dictionary)
-    if not isinstance(data, dict):
+    required_keys = {'id', 'description', 'est_time', 'user'}
+
+    # If the data is a list, check each item in the list.
+    if isinstance(data, list):
+        for item in data:
+            if not isinstance(item, dict):
+                print("ERROR: Expected a list of JSON objects, but found a non-object item.")
+                return False
+            missing_keys = required_keys - set(item.keys())
+            if missing_keys:
+                print(f"ERROR: An object in the list is missing the following required keys: {', '.join(missing_keys)}")
+                return False
+    # If the data is a single dictionary, check it directly.
+    elif isinstance(data, dict):
+        missing_keys = required_keys - set(data.keys())
+        if missing_keys:
+            print(f"ERROR: The JSON object is missing the following required keys: {', '.join(missing_keys)}")
+            return False
+    else:
+        print("ERROR: The JSON file does not contain a single object or a list of objects.")
         return False
 
-    required_keys = ['id', 'description', 'est_time', 'user']
-    # Check if all required keys are present
-    missing_keys = [key for key in required_keys if key not in data]
-    if missing_keys:
-        return False
+    print("SUCCESS: The JSON file is valid and contains all required keys.")
     return True

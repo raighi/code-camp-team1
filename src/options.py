@@ -38,6 +38,6 @@ def create_parser():
     # Création du parseur pour la commande end
     parser_end = subparsers.add_parser('end', help='Mark a task as ended')
     parser_end.add_argument('id', help="The task id")
-    parser_end.add_argument('-r', '--end_time', required=True,
+    parser_end.add_argument('-r', '--end_time', required=True, type=int
                             help='Enter the actual time in seconds for performing the task')
     return parser

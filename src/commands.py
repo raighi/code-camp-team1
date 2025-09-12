@@ -42,9 +42,8 @@ def add(details, file, user):
         choice = input("Do you want to create a new task file? (1 = yes, 0 = no): ").strip()
         if choice == "1":
             try:
-                with open(file, "w", encoding="utf-8") as f:
-                    json.dump([], f, indent=2)  # start with empty list of tasks
-                print(f"New file created at '{file}'")
+                create(details, file, user)
+                return
             except Exception as e:
                 print(f"Failed to create file: {e}")
                 return

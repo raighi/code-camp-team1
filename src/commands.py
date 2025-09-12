@@ -154,7 +154,7 @@ def modify(id, file, new_details, new_user):
         task_found = False
 
         for task in tasks:
-            if task['id'] == id:
+            if int(task['id']) == id:
                 # Update task fields
                 if new_details != "no details":
                     task['description'] = new_details

@@ -24,13 +24,13 @@ Each task has a unique ID and a description.
 | `file`   | all commands | path | Path to the tasks file. Created on `add` if missing. | `tasks.json` |
 | `command` | all commands | literal | One of `add`, `modify`, `rm`, `show`, `end`. | `add` |
 | `id` | `modify`, `rm` | int | Task identifier printed by `add` or shown by `show`. | `0` |
-| `details` | `add`, `modify` | string (rest of line) | Task description. For `modify`, replaces the description for `id`. Quote if it contains spaces. | "Buy milk" |
+| `details` | `add`, `modify`,`create` | string (rest of line) | Task description. For `modify`, replaces the description for `id`. Quote if it contains spaces. | "Buy milk" |
 
 
 ## Arguments
 | Argument | Optional for | Type | Description | Example |
 |----------|--------------|------|-------------|---------|
-| `-u`, `--user` | `add`, `modify` | literal | Specifies which user the task belongs to. (if no new description is informed calling modify it keeps the old one) | `python src/main.py tasks.json modify 0 -u AloisHasNeurons` |
+| `-u`, `--user` | `add`, `modify`, `create` | literal | Specifies which user the task belongs to. (if no new description is informed calling modify it keeps the old one) | `python src/main.py tasks.json modify 0 -u AloisHasNeurons` |
 
 ---
 ## Other infos

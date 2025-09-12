@@ -39,9 +39,9 @@ def add(details, file, user):
     tasks = get_tasks(file)
 
     while True:
-        estimated_time = input("Please enter the estimated time of the task (in seconds): ")
+        est_time = input("Please enter the estimated time of the task (in seconds): ")
         try:
-            time_value = int(estimated_time)
+            time_value = int(est_time)
             if time_value >= 0:
                 break
             else:
@@ -58,7 +58,7 @@ def add(details, file, user):
     new_task = {
         'id': str(new_id),
         'description': details,
-        'est_time': str(estimated_time)
+        'est_time': str(est_time)
     }
 
     if user:

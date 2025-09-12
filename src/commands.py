@@ -141,8 +141,8 @@ def show(file):
         max_end_time_len = max(len("end time"), max(len(str(task.get('end_time', ''))) for task in tasks))
 
         # Create table header
-        header = f"| {'id':<{id_width}} | {'description':<{max_desc_len}} | {'user':<{max_user_len}} |"
-        f"{'est. time':<{max_est_time_len}} | {'end time':<{max_end_time_len}} |"
+        header = (f"| {'id':<{id_width}} | {'description':<{max_desc_len}} | {'user':<{max_user_len}} |"
+                  f" {'est. time':<{max_est_time_len}} | {'end time':<{max_end_time_len}} |")
         divider = ("+" + "-" * (id_width + 2) + "+" + "-" * (max_desc_len + 2) + "+" + "-" *
                    (max_user_len + 2) + "+" + "-" * (max_est_time_len + 2) + "+" + "-" * (max_end_time_len + 2) + "+")
 
@@ -177,7 +177,7 @@ def endTask(file, id, end_time):
 
         task_found = False
         for task in tasks:
-            if task['id'] == id:
+            if int(task['id']) == id:
                 if task.get('end_time'):
                     print(f"ERROR: task {id} already has an end time.")
                     return

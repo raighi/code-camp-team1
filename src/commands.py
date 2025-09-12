@@ -36,6 +36,17 @@ def save_tasks(file, tasks):
 
 
 def add(details, file, user):
+    """
+    Adds a new task to the specified file.
+
+    Prompts user for estimated time, generates next available ID, and creates
+    a new task with the provided details and user information.
+
+    Args:
+        details (str): Task description
+        file (str): Path to the tasks file
+        user (str): User assigned to the task
+    """
     if not check_json_file_integrity(file):
         return
     tasks = get_tasks(file)
@@ -72,6 +83,17 @@ def add(details, file, user):
 
 
 def create(new_details, new_file, new_user):
+    """
+    Creates a new tasks file with an initial task.
+
+    Prompts user for estimated time and creates a new JSON file containing
+    the first task with ID 0.
+
+    Args:
+        new_details (str): Description for the first task
+        new_file (str): Path for the new tasks file
+        new_user (str): User assigned to the first task
+    """
     while True:
         est_time = input("Please enter the estimated time of the task (in seconds): ")
         try:
@@ -101,6 +123,22 @@ def create(new_details, new_file, new_user):
 
 
 def modify(id, file, new_details, new_user):
+    """
+    Modifies an existing task's details and/or user assignment.
+
+    Updates the task with the specified ID, changing description and user
+    information based on provided parameters.
+
+    Args:
+        id (str): Task ID to modify
+        file (str): Path to the tasks file
+        new_details (str): New task description ("no details" to keep current)
+        new_user (str): New user assignment ("unknown" to keep current)
+
+    Raises:
+        ValueError: If task ID is not found
+        FileNotFoundError, PermissionError, json.JSONDecodeError: File operation errors
+    """
     if not check_json_file_integrity(file):
         return
     try:
@@ -133,6 +171,17 @@ def modify(id, file, new_details, new_user):
 
 
 def rm(id, file):
+    """
+    Removes a task from the file by its ID.
+
+    Args:
+        id (str): Task ID to remove
+        file (str): Path to the tasks file
+
+    Raises:
+        ValueError: If task ID is not found
+        FileNotFoundError, PermissionError, json.JSONDecodeError: File operation errors
+    """
     if not check_json_file_integrity(file):
         return
     try:
@@ -142,7 +191,7 @@ def rm(id, file):
         # Filter out the task with the specified ID
         updated_tasks = []
         for task in tasks:
-            if task['id'] == id:
+            if int(task['id']) == id:
                 task_found = True
             else:
                 updated_tasks.append(task)
@@ -158,6 +207,18 @@ def rm(id, file):
 
 
 def show(file):
+    """
+    Displays all tasks from the file in a formatted table.
+
+    Shows task ID, description, user, estimated time, and end time (if completed)
+    in a nicely formatted table with proper column alignment.
+
+    Args:
+        file (str): Path to the tasks file
+
+    Raises:
+        FileNotFoundError, PermissionError, json.JSONDecodeError: File operation errors
+    """
     if not check_json_file_integrity(file):
         return
     try:

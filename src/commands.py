@@ -37,7 +37,6 @@ def save_tasks(file, tasks):
 
 def add(details, file, user):
     if not check_json_file_integrity(file):
-        print(f"ERROR: {file} is not a valid JSON file.")
         return
     tasks = get_tasks(file)
 
@@ -72,9 +71,37 @@ def add(details, file, user):
     print(f"Successfully added task {details} (ID: {new_id})")
 
 
+def create(new_details, new_file, new_user):
+    while True:
+        est_time = input("Please enter the estimated time of the task (in seconds): ")
+        try:
+            time_value = int(est_time)
+            if time_value >= 0:
+                break
+            else:
+                print("Error: Time must be a positive number or zero.")
+        except ValueError:
+            print("Error: Please enter a valid integer number.")
+
+    # Find next ID
+    new_id = 0
+
+    # Create new task
+    new_task = {
+        'id': str(new_id),
+        'description': new_details,
+        'est_time': str(est_time)
+    }
+
+    if new_user:
+        new_task['user'] = new_user
+
+    save_tasks(new_file, new_task)
+    print(f"Successfully added task {new_details} (ID: {new_id})")
+
+
 def modify(id, file, new_details, new_user):
     if not check_json_file_integrity(file):
-        print(f"ERROR: {file} is not a valid JSON file.")
         return
     try:
         tasks = get_tasks(file)
@@ -107,9 +134,7 @@ def modify(id, file, new_details, new_user):
 
 def rm(id, file):
     if not check_json_file_integrity(file):
-        print(f"ERROR: {file} is not a valid JSON file.")
         return
-
     try:
         tasks = get_tasks(file)
         task_found = False
@@ -134,7 +159,6 @@ def rm(id, file):
 
 def show(file):
     if not check_json_file_integrity(file):
-        print(f"ERROR: {file} is not a valid JSON file.")
         return
     try:
         tasks = get_tasks(file)
@@ -221,6 +245,7 @@ def check_json_file_integrity(file_path):
     """
     if not os.path.isfile(file_path):
         print(f"ERROR: File not found at '{file_path}'")
+        print("HINT: Did you mean to use the create command?")
         return False
 
     try:

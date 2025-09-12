@@ -36,6 +36,9 @@ def save_tasks(file, tasks):
 
 
 def add(details, file, user):
+    if not check_json_file_integrity(file):
+        print(f"ERROR: {file} is not a valid JSON file.")
+        return
     tasks = get_tasks(file)
 
     while True:
@@ -70,7 +73,9 @@ def add(details, file, user):
 
 
 def modify(id, file, new_details, new_user):
-    print(new_details)
+    if not check_json_file_integrity(file):
+        print(f"ERROR: {file} is not a valid JSON file.")
+        return
     try:
         tasks = get_tasks(file)
         task_found = False
@@ -101,6 +106,10 @@ def modify(id, file, new_details, new_user):
 
 
 def rm(id, file):
+    if not check_json_file_integrity(file):
+        print(f"ERROR: {file} is not a valid JSON file.")
+        return
+
     try:
         tasks = get_tasks(file)
         task_found = False
@@ -124,6 +133,9 @@ def rm(id, file):
 
 
 def show(file):
+    if not check_json_file_integrity(file):
+        print(f"ERROR: {file} is not a valid JSON file.")
+        return
     try:
         tasks = get_tasks(file)
         if not tasks:
@@ -195,3 +207,37 @@ def endTask(file, id, end_time):
 
     except (FileNotFoundError, PermissionError, json.JSONDecodeError) as e:
         raise e
+
+
+def check_json_file_integrity(file_path):
+    """
+    Check if a file is a valid JSON and contains all the specified keys.
+
+    Args:
+        file_path (str): Path to the file to check.
+
+    Returns:
+        bool: Indicates if the check passed.
+    """
+    if not os.path.isfile(file_path):
+        return False
+
+    try:
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+    except Warning as w:
+        print(f"WARNING: {w}")
+    except Exception as e:
+        print(f"ERROR: {e}")
+        return False
+
+    # Check if the JSON is an object (dictionary)
+    if not isinstance(data, dict):
+        return False
+
+    required_keys = ['id', 'description', 'est_time', 'user']
+    # Check if all required keys are present
+    missing_keys = [key for key in required_keys if key not in data]
+    if missing_keys:
+        return False
+    return True

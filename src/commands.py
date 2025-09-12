@@ -36,10 +36,30 @@ def save_tasks(file, tasks):
 
 
 def add(details, file, user):
+    # Check if file exists
+    if not os.path.isfile(file):
+        print(f"ERROR: File '{file}' not found.")
+        choice = input("Do you want to create a new task file? (1 = yes, 0 = no): ").strip()
+        if choice == "1":
+            try:
+                with open(file, "w", encoding="utf-8") as f:
+                    json.dump([], f, indent=2)  # start with empty list of tasks
+                print(f"New file created at '{file}'")
+            except Exception as e:
+                print(f"Failed to create file: {e}")
+                return
+        else:
+            print("Aborting.")
+            return
+
+    # At this point, the file exists. Validate integrity.
     if not check_json_file_integrity(file):
+        print(f"ERROR: File '{file}' exists but is not valid.")
         return
+
     tasks = get_tasks(file)
 
+    # Ask for estimated time
     while True:
         est_time = input("Please enter the estimated time of the task (in seconds): ")
         try:
@@ -62,7 +82,6 @@ def add(details, file, user):
         'description': details,
         'est_time': str(est_time)
     }
-
     if user:
         new_task['user'] = user
 

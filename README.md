@@ -53,9 +53,14 @@ python -m unittest tests/test_commands.py
 
 # Authors
 
-Aloïs VINCENT, email : alois.vincent@imt-atlantique.net 
+Aloïs VINCENT, email : alois.vincent@imt-atlantique.net
+
 Raphaël HIERSO, email : raphael.hierso-iglesias@imt-atlantique.net
+
 Heitor SARDINHA GONÇALVES PAIVA, email : heitor.sardinha-goncalves-paiva@imt-atlantique.net
+
 Thomas BRUYERE, email : thomas.bruyere@imt-atlantique.net
+
 Ala ABDESSAYED, email : alaabdessaied@gmail.com
+
 Mingyang WANG, email : mingyang.wang@imt-atlantique.net

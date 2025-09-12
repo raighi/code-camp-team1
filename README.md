@@ -40,17 +40,65 @@ When adding a task, an estimatation of the duration is asked. When an user want 
 Adding a new task to a non-preexistent file will result to the creation of the said file. Any other command to a non-preexistent file will result to a "no such file or directory" error.
 
 For the compliance check : id are positive integers, details are strings of characters, the files are json files, users are strings of characters, est_time and end_time are positive integers representing time in seconds.
+
+
 ## File Format
-Tasks are stored as `<ID>\t<description>` per line.
 
----
+The task data is stored in a JSON file with the following structure:
 
-## Tests
-Run tests with:
-```bash
-python -m unittest tests/test_commands.py
+```json
+[
+  {
+    "id": "0",
+    "description": "task description",
+    "est_time": "120",
+    "user": "username",
+    "end_time": "timestamp"
+  },
+  ...
+]
 ```
 
+Each file contains an array of task objects. Each task object has the following fields:
+
+- `id` (string): A unique identifier for the task. IDs are assigned sequentially starting from 0.
+- `description` (string): A description of the task.
+- `est_time` (string): The estimated time required to complete the task, in seconds.
+- `user` (string, optional): The user assigned to the task. If this field is not present, no user is assigned to the task.
+- `end_time` (string, optional): The timestamp when the task was completed, represented as a Unix timestamp (seconds since epoch). This field is only present for completed tasks.
+
+All field values are stored as strings, even for numeric values like `id`, `est_time`, and `end_time`.
+
+The file must be a valid JSON array. Each task object must have at least the `id`, `description`, and `est_time` fields. The `user` and `end_time` fields are optional.
+
+Example:
+
+```json
+[
+  {
+    "id": "0",
+    "description": "super description",
+    "est_time": "23",
+    "user": "unknown"
+  },
+  {
+    "id": "1",
+    "description": "another task",
+    "est_time": "345",
+    "user": "michel",
+    "end_time": "1625097600"
+  }
+]
+```
+
+In the example above:
+- The first task does not have an `end_time`, indicating it is not yet completed.
+- The second task has an `end_time`, indicating it has been completed. The value is a Unix timestamp (e.g., "1625097600" represents July 1, 2021).
+- The `user` field is optional; if not present, no user is assigned to the task.
+
+
+
+---
 # Authors
 
 Aloïs VINCENT, email : alois.vincent@imt-atlantique.net

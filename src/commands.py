@@ -96,7 +96,7 @@ def create(new_details, new_file, new_user):
     if new_user:
         new_task['user'] = new_user
 
-    save_tasks(new_file, new_task)
+    save_tasks(new_file, [new_task])
     print(f"Successfully added task {new_details} (ID: {new_id})")
 
 
@@ -167,6 +167,7 @@ def show(file):
             return
 
         # Sort tasks by ID
+        print(tasks)
         tasks.sort(key=lambda x: int(x['id']))
 
         # Calculate column widths
@@ -270,12 +271,11 @@ def check_json_file_integrity(file_path):
             if missing_keys:
                 print(f"ERROR: An object in the list is missing the following required keys: {', '.join(missing_keys)}")
                 return False
-    # If the data is a single dictionary, check it directly.
+    # If the data is a single dictionary, we consider it an invalid format for this program.
     elif isinstance(data, dict):
-        missing_keys = required_keys - set(data.keys())
-        if missing_keys:
-            print(f"ERROR: The JSON object is missing the following required keys: {', '.join(missing_keys)}")
-            return False
+        print("ERROR: The JSON file contains a single object instead of a list of objects.")
+        print("HINT: The tasks file must be a list (JSON array), even if it contains only one task.")
+        return False
     else:
         print("ERROR: The JSON file does not contain a single object or a list of objects.")
         return False

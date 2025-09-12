@@ -40,3 +40,5 @@ def create_parser():
     #Création du parseur pour la commandecreate
     parser_create = subparsers.add_parser('create', help='Create a new task file')
     parser_create.add_argument('new_file', help='The new tasks file')
+    parser_create.add_argument('new_details', type=str, help='The first task')
+    parser_creat.add_argument('-u','new_user', type= str, help='The first attributed user')

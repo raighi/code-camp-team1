@@ -37,6 +37,8 @@ Each task has a unique ID and a description.
 When adding a task, an estimatation of the duration is asked. When an user want to end a task he has to notify how many seconds he needed to complete the task in his command.
 
 Adding a new task to a non-preexistent file will result to the creation of the said file. Any other command to a non-preexistent file will result to a "no such file or directory" error.
+
+For the compliance check : id are positive integers, details are strings of characters, the files are json files, users are strings of characters, est_time and end_time are positive integers representing time in seconds.
 ## File Format
 Tasks are stored as `<ID>\t<description>` per line.
 

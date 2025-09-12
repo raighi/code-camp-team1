@@ -50,3 +50,12 @@ Run tests with:
 ```bash
 python -m unittest tests/test_commands.py
 ```
+
+# Authors
+
+{ name = "Aloïs VINCENT", email = "alois.vincent@imt-atlantique.net" },
+  { name = "Raphaël HIERSO", email = "raphael.hierso-iglesias@imt-atlantique.net"},
+  { name = "Heitor SARDINHA GONÇALVES PAIVA", email = "heitor.sardinha-goncalves-paiva@imt-atlantique.net"},
+  { name = "Thomas BRUYERE", email = "thomas.bruyere@imt-atlantique.net"},
+  { name = "Ala ABDESSAYED", email = "alaabdessaied@gmail.com"},
+  { name = "Mingyang WANG", email = "mingyang.wang@imt-atlantique.net"}
